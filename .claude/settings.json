@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(**/.env*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*firebase-adminsdk*.json)",
+      "Edit(./.claude/**)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(sudo *)",
+      "Bash(git push --force *)",
+      "Bash(git reset --hard *)",
+      "Bash(vercel *)"
+    ],
+    "ask": [
+      "Bash(npm install *)",
+      "Bash(npm add *)",
+      "Bash(git push *)",
+      "Bash(vercel *)",
+      "Bash(npm ci *)"
+    ],
+    "blockReadsOutsideWorkingDirectories": true
+  },
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "allowUnsandboxedCommands": false,
+    "filesystem": {
+      "denyRead": ["~/"],
+      "allowRead": ["."],
+      "allowWrite": ["."]
+    },
+    "network": {
+      "allowedDomains": ["registry.npmjs.org", "fonts.googleapis.com", "fonts.gstatic.com"]
+    }
+  },
+  "disableBypassPermissionsMode": "disable"
+}
