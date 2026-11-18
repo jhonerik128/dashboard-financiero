@@ -1,7 +1,7 @@
 import type { Transaction } from "@/lib/transactions";
 import { formatDate, formatMoney } from "@/lib/format";
-type Props = { items: Transaction[]; onExport: () => void };
-export function TransactionTable({ items, onExport }: Props) {
+type Props = { items: Transaction[]; onExport: () => void; canExport?: boolean };
+export function TransactionTable({ items, onExport, canExport = true }: Props) {
   return (
     <section className="panel transactions" id="movimientos" aria-labelledby="transactions-title">
       <div className="panel-heading">
@@ -11,9 +11,11 @@ export function TransactionTable({ items, onExport }: Props) {
             {items.length} movimientos en el resultado
           </p>
         </div>
-        <button className="button" type="button" onClick={onExport}>
-          ↓ CSV
-        </button>
+        {canExport ? (
+          <button className="button" type="button" onClick={onExport}>
+            ↓ CSV
+          </button>
+        ) : null}
       </div>
       {items.length ? (
         <TransactionRows items={items} />
